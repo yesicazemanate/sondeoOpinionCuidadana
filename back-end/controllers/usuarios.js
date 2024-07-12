@@ -1,15 +1,71 @@
 import Usuarios from '../models/usuarios.js'
+import { encrypt } from '../utils/bcrypt.js';
 
+export const agregarUsuario = async (req, res) => {
+    
+    const {
+        tipo_documento,
+        numero_documento,
+        nombres,
+        apellidos,
+        sexo,
+        telefono_celular,
+        telefono_fijo,
+        correo_electronico,
+        municipio,
+        direccion,
+        barrio_vereda,
+        fecha_nacimiento,
+        etnia,
+        condicion_discapacidad,
+        estrato_residencial,
+        nivel_educativo,
+        acceso_dispositivo,
+        dispositivos,
+        conectividad_internet,
+        tipo_regimen_afiliacion,
+        password,
+        id_rol
+    } = req.body;
+    try {
+        
 
-export const agregarUsuario= async(req, res)=>{
-    try{
-        const usuario = Usuarios(req.body)
-        const usuarioSave = await usuario.save()
-        res.json(usuarioSave)
-    } catch(error){
-        res.status(500).send( error)
+        const checkIs = await Usuarios.findOne({ $or: [{ numero_documento }, { correo_electronico }] });
+        if (checkIs) {
+            return res.status(400).json({ message: 'Usuario ya existe' });
+        }
+const passwordHash = await encrypt(password)
+        const usuario = new Usuarios({
+            tipo_documento,
+            numero_documento,
+            nombres,
+            apellidos,
+            sexo,
+            telefono_celular,
+            telefono_fijo,
+            correo_electronico,
+            municipio,
+            direccion,
+            barrio_vereda,
+            fecha_nacimiento,
+            etnia,
+            condicion_discapacidad,
+            estrato_residencial,
+            nivel_educativo,
+            acceso_dispositivo,
+            dispositivos,
+            conectividad_internet,
+            tipo_regimen_afiliacion,
+            password : passwordHash,
+            id_rol
+        });
+
+        const usuarioSave = await usuario.save();
+        res.json(usuarioSave);
+    } catch (error) {
+        res.status(500).send(error);
     }
-}
+};
 export const obtenerUsuarios= async(req, res)=>{
     try{
         const usuarios= await Usuarios.find({})
