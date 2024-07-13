@@ -1,4 +1,4 @@
-import Respuesta from "../modelsdd/respuesta"
+import Respuesta from "../models/respuesta.js"
 export const addRespuesta = async(req,res)=>{
     try {
         const body = req.body

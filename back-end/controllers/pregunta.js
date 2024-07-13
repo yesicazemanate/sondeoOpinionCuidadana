@@ -1,4 +1,4 @@
-import Pregunta from "../modelsdd/pregunta.model"
+import Pregunta from "../models/pregunta.js"
 
 export const addPregunta = async(req,res)=>{
     try {

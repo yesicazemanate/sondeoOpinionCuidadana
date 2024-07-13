@@ -1,5 +1,5 @@
 import express from 'express'
-import { actualizarRespuesta, addRespuesta, getRespuesta, getRespuestas } from '../controllerdd/respuesta'
+import { actualizarRespuesta, addRespuesta, getRespuesta, getRespuestas } from '../controllers/respuesta.js'
 
 
 const router = express.Router()

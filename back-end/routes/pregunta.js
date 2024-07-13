@@ -1,5 +1,5 @@
 import express from 'express'
-import { actualizarPregunta, addPregunta, getPregunta, getPreguntas } from '../controllerdd/pregunta'
+import { actualizarPregunta, addPregunta, getPregunta, getPreguntas } from '../controllers/pregunta.js'
 
 const router = express.Router()
 

@@ -1,4 +1,4 @@
-import Participantes from "../modelsdd/participante.model"
+import Participantes from "../models/participante.js"
 
 export const addParticipante = async(req,res)=>{
     try {
