@@ -1,10 +1,11 @@
 import {BrowserRouter, useRoutes } from 'react-router-dom'
 import { SondeosDisponibles } from './pages/SondeosDisponibles'
+import { PreguntasSondeo } from './components/PreguntasSondeo'
 
 function App() {
   const AppRouter = ()=>{
     const routes = useRoutes([
-      {path:'/', element:<SondeosDisponibles/>}
+      {path:'/', element:<PreguntasSondeo/>}
     ])
 
     return routes
