@@ -1,5 +1,6 @@
 import React from 'react'
 import { SideBarAdmin } from '../components/SideBarAdmin'
+import { Link } from 'react-router-dom'
 
 export const SondeoAdmin = () => {
   return (
@@ -7,7 +8,7 @@ export const SondeoAdmin = () => {
         <SideBarAdmin/>
         <section className='w-full p-20'>
             <div className='flex gap-5 mb-10'>
-            <button className='bg-sky-500 text-white rounded-lg flex justify-center items-center gap-5 p-2'><p className='text-xl'>Crear</p> <img src="src/assets/send.png" alt="" className='w-10' /></button>
+            <button className='bg-sky-500 text-white rounded-lg flex justify-center items-center gap-5 p-2'><p className='text-xl'><Link to={'/crearsondeo'}>Crear</Link></p> <img src="src/assets/send.png" alt="" className='w-10' /></button>
             <button className='bg-sky-500 text-white rounded-lg w-36 p-2'><p className='text-xl'>Exportar Sondeo</p></button>
             </div>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

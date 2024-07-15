@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const CardSondeos = () => {
   return (
@@ -14,7 +15,7 @@ export const CardSondeos = () => {
             </h1>
         </div>
         <h1 className='mt-5 font-medium'>Poblacion: Mayores 14 años</h1>
-        <button className='bg-orange-500 w-full text-white text-lg font-extrabold rounded-md p-1 mt-5 '>Empezar</button>
+        <button className='bg-orange-500 w-full text-white text-lg font-extrabold rounded-md p-1 mt-5 '><Link to={'/preguntassondeo'}> Empezar</Link></button>
     </div>
   )
 }

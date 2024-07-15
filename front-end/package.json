@@ -14,12 +14,8 @@
     "js-cookie": "^3.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-<<<<<<< HEAD
     "react-router-dom": "^6.24.1",
     "tailwind": "^4.0.0"
-=======
-    "react-router-dom": "^6.24.1"
->>>>>>> 192cb25cfa32a61a6e8874983d75c8e8e7c3dcf5
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
