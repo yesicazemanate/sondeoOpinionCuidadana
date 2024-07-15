@@ -106,15 +106,12 @@ password:{
     require: true,
     trim: true
 },
-rol:{
+rol: {
     type: String,
-    enum: ['cuidadano', 'administrador'],
-    required: true
-}
-
-
-
-}
+    enum: ['Ciudadano', 'Administrador'],
+    required: true,
+    trim: true
+}}
 ,
 {
     timestamps: true

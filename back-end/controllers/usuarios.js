@@ -25,7 +25,7 @@ export const agregarUsuario = async (req, res) => {
         conectividad_internet,
         tipo_regimen_afiliacion,
         password,
-        id_rol
+        rol
     } = req.body;
     try {
         
@@ -57,7 +57,7 @@ const passwordHash = await encrypt(password)
             conectividad_internet,
             tipo_regimen_afiliacion,
             password : passwordHash,
-            id_rol
+            rol
         });
 
         const usuarioSave = await usuario.save();
