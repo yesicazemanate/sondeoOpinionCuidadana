@@ -106,9 +106,9 @@ password:{
     require: true,
     trim: true
 },
-id_rol:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'rol', 
+rol:{
+    type: String,
+    enum: ['cuidadano', 'administrador'],
     required: true
 }
 
