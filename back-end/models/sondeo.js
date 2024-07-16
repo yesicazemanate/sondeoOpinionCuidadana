@@ -20,23 +20,12 @@ const sondeoShema = mongoose.Schema({
         type:String,
         require: true,
         trim:true
-    },
-    estado:{
-        type:Boolean,
+    },perfil_poblacional:{
+        type:String,
         require: true,
         trim:true
     },
     imgSondeo:{
-        type:String,
-        require: true,
-        trim:true
-    },
-    idAdministrador:{
-        type:String,
-        require: true,
-        trim:true
-    },
-    idCiudadano:{
         type:String,
         require: true,
         trim:true
