@@ -1,6 +1,23 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 
 export const CrearSondeo = () => {
+    const [titulo, setTitulo] = useState()
+    const [descripcion, setDescripcion] = useState()
+    const [fechaApertura, setFechaApertura] = useState()
+    const [fechaCierre, setFechaCierre] = useState()
+    const [perfilPoblacional, setPerfilPoblacional] = useState()
+    const [imagen, setImagen] = useState()
+    const [data, setData] = useState()
+    const handleSubmi = async(e)=>{
+        e.preventDefault()
+        const crearSondeo = await axios.post('',{
+           titulo,descripcion,fechaApertura,fechaCierre,perfilPoblacional 
+        })
+
+        setData(crearSondeo.data)
+    }
+
   return (
 <div class="bg-gray-100 flex items-center justify-center h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg">
@@ -13,25 +30,35 @@ export const CrearSondeo = () => {
             <div className=''> 
             <div class="mb-4">
                 <label for="fullName" class="block text-gray-700 text-sm font-semibold mb-2">Titulo</label>
-                <input type="text" id="fullName" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="Salud,Dieta Ejercicio"/>
+                <input 
+                onChange={e=> setTitulo(e.target.value)}
+                type="text" id="fullName" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="Salud,Dieta Ejercicio"/>
             </div>
             <div class="mb-4">
                 <label for="fullName" class="block text-gray-700 text-sm font-semibold mb-2">Descripcion</label>
-                <input type="text" id="fullName" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="Sondeo sobre la dieta"/>
+                <input
+                onChange={e=> setDescripcion(e.target.value)}
+                type="text" id="fullName" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="Sondeo sobre la dieta"/>
             </div>
             <div class="mb-4">
                 <label for="fullName" class="block text-gray-700 text-sm font-semibold mb-2">Fecha Apertura</label>
-                <input type="date" id="fullName" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="James Brown"/>
+                <input
+                onChange={e=> setFechaApertura(e.target.value)}
+                type="date" id="fullName" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="James Brown"/>
             </div>
             </div>
             <div>
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 text-sm font-semibold mb-2">Fecha Cierre</label>
-                <input type="date" id="email" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="hello@alignui.com"/>
+                <input
+                onChange={e=> setFechaCierre(e.target.value)}
+                type="date" id="email" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="hello@alignui.com"/>
             </div>
             <div class="mb-6">
                 <label for="password" class="block text-gray-700 text-sm font-semibold mb-2">Perfil Poblacional</label>
-                <input type="password" id="password" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="Hombre, Mujer, mayor 14 años, etc..."/>
+                <input 
+                onChange={e=>setPerfilPoblacional(e.target.value)}
+                type="text" id="password" class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="Hombre, Mujer, mayor 14 años, etc..."/>
             </div>
             <div class="mb-4">
                 <label for="fullName" class="block text-gray-700 text-sm font-semibold mb-2">Icono del sondeo</label>
