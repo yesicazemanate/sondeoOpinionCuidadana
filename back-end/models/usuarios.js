@@ -87,8 +87,8 @@ acceso_dispositivo:{
     trim: true
 },
 dispositivos:{
-    type: String,
-    trim: true
+    type: mongoose.Schema.Types.Mixed 
+
 },
 conectividad_internet:{
     type: Boolean,

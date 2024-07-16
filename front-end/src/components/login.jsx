@@ -95,7 +95,11 @@ export  const Login=()=> {
                   </button>
                 </div>
               </form>
+              <p className="mt-4 text-center">
+                    No tienes cuenta? <a href="/registro" className="text-indigo-600 hover:underline">Regístrate aquí</a>
+                </p>
             </div>
+            
           </div>
         );
       }

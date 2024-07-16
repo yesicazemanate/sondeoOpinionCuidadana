@@ -9,6 +9,7 @@ import { PreguntasSondeo } from './components/PreguntasSondeo.jsx'
 import { SondeoAdmin } from './pages/SondeoAdmin.jsx'
 import { CrearInforme } from './components/CrearInforme.jsx'
 import { CrearSondeo } from './components/CrearSondeo.jsx'
+import {RegistroUsuario} from './pages/registro.jsx'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
  <BrowserRouter>
  <Routes>
 <Route  path='/' element={<Login/>}/>
+<Route path='/registro' element ={<RegistroUsuario/>}/>
 <Route  element={<Protected/>}>
 
 <Route path='/administrador' element={<SondeoAdmin/>}/>
