@@ -10,15 +10,15 @@ export const agregarSondeo = (req, res) => {
         }
         console.log(req.file)
 
-        const { titulo, descripcion, fechaPublicacion, fechaCierre, perfil_poblacional} = req.body;
+        const { titulo, descripcion, fechaApertura, fechaCierre, perfilPoblacional} = req.body;
 
         const newSonde = {
             titulo,
             descripcion,
-            fechaPublicacion,
+            fechaApertura,
             fechaCierre,
-            perfil_poblacional,
-            imgSondeo: req.file.path, 
+            perfilPoblacional,
+            imgSondeo: req.file.filename, 
             
         };
 
@@ -40,7 +40,8 @@ export const obtenerSondeos = async (req, res) => {
         
        
         const sondeosConImagen = sondeos.map(sondeo => {
-            const imagePath = path.join('/imagenes', path.basename(sondeo.imgSondeo));             return {
+            const imagePath = path.join('/imagenes', path.basename(sondeo.imgSondeo)); 
+                return {
                 ...sondeo.toObject(),
                 imgSondeo: imagePath 
             };

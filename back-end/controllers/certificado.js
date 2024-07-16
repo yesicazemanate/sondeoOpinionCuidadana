@@ -1,9 +1,12 @@
 import multer from 'multer'
 import path from 'path'
+import url from 'url'
 import fs from 'fs'
-import Certificado from "../models/certificado";
-import { generateUniqueId } from "../utils/uniqueIndenticador";
+import Certificado from "../models/certificado.js"; 
+import { generateUniqueId } from "../utils/uniqueIndenticador.js";
 
+const __filename = url.fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 const storage = multer.diskStorage({
     destination: path.join(__dirname, '..', 'certificados'),
     filename: (req, file, cd)=>{

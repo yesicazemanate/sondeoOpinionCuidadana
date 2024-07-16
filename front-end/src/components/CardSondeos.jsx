@@ -1,7 +1,16 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export const CardSondeos = () => {
+    const [data, setData]= useState()
+    useEffect(()=>{
+        const obtenerSondeos=async()=>{
+            const response = await axios.get('http://localhost:4003/sondeos')
+            setData(response.data)
+        }
+    },[])
   return (
     <div className='border-black border-2 w-max pl-7 pr-7 pb-2 text-center ml-4 mt-10 rounded-xl '>
         <img src="src/assets/imgLogoDesayuno.png" alt="" className='w-32 ml-32' />

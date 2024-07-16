@@ -11,7 +11,7 @@ const sondeoShema = mongoose.Schema({
         require: true,
         trim:true
     },
-    fechaPublicacion:{
+    fechaApertura:{
         type:String,
         require: true,
         trim:true

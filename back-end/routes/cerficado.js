@@ -1,5 +1,5 @@
 import express from 'express'
-import { actualizarCertificado, addCerticado, getCerticados } from '../controllers/certificado'
+import { actualizarCertificado, addCerticado, getCerticados } from '../controllers/certificado.js'
 const router = express.Router()
 
 router.get('/',getCerticados)
