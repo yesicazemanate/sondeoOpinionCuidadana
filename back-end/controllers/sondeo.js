@@ -10,14 +10,14 @@ export const agregarSondeo = (req, res) => {
         }
         console.log(req.file)
 
-        const { titulo, descripcion, fechaApertura, fechaCierre, perfilPoblacional} = req.body;
+        const { titulo, descripcion, fechaApertura, fechaCierre, perfil_poblacional} = req.body;
 
         const newSonde = {
             titulo,
             descripcion,
             fechaApertura,
             fechaCierre,
-            perfilPoblacional,
+            perfil_poblacional,
             imgSondeo: req.file.filename, 
             
         };
@@ -36,21 +36,10 @@ export const agregarSondeo = (req, res) => {
 };
 export const obtenerSondeos = async (req, res) => {
     try {
-        const sondeos = await Sondeo.find({});
-        
-       
-        const sondeosConImagen = sondeos.map(sondeo => {
-            const imagePath = path.join('/imagenes', path.basename(sondeo.imgSondeo)); 
-                return {
-                ...sondeo.toObject(),
-                imgSondeo: imagePath 
-            };
-        });
-
-        return res.status(200).json(sondeosConImagen);
-        
+        const sondeos = await Sondeo.find()
+        return res.status(200).json(sondeos);
     } catch (error) {
-        console.log("Hubo un error al momento de traer los sondeos", error);
+        console.error("ERROR", error);
         return res.status(500).json({ error: 'Error al obtener los sondeos' });
     }
 };

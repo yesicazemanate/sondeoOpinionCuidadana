@@ -22,5 +22,5 @@ router.use('/pregunta', routePregunta)
 router.use('/respuestausuario', routeRespuesta)
 router.use('/participante', routeParticipante)
 router.use('/certificados', routeCertificado)
-//routes.use('/sondeos',express.static(path.join(__dirname,'imagenes')), routeSondeo)
+routes.use('/sondeos',express.static(path.join(__dirname,'imagenes')), routeSondeo)
  export default routes
