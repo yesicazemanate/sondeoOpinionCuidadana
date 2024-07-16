@@ -1,5 +1,6 @@
 import Sondeo from '../models/sondeo.js'
 import upload from '../libs/multer.js';
+import path from 'path'
 export const agregarSondeo = (req, res) => {
     upload.single('imgSondeo')(req, res, async (err) => {
         if (err) {
@@ -9,17 +10,16 @@ export const agregarSondeo = (req, res) => {
         }
         console.log(req.file)
 
-        const { titulo, descripcion, fechaPublicacion, fechaCierre, estado, idAdministrador, idCiudadano } = req.body;
+        const { titulo, descripcion, fechaPublicacion, fechaCierre, perfil_poblacional} = req.body;
 
         const newSonde = {
             titulo,
             descripcion,
             fechaPublicacion,
             fechaCierre,
-            estado,
+            perfil_poblacional,
             imgSondeo: req.file.path, 
-            idAdministrador,
-            idCiudadano
+            
         };
 
         try {
@@ -34,15 +34,25 @@ export const agregarSondeo = (req, res) => {
         }
     });
 };
-export const obtenerSondeos=async(req, res)=>{
+export const obtenerSondeos = async (req, res) => {
     try {
-        const sondeos =  await Sondeo.find({})
-        return res.status(200).json(sondeos)
+        const sondeos = await Sondeo.find({});
+        
+       
+        const sondeosConImagen = sondeos.map(sondeo => {
+            const imagePath = path.join('/imagenes', path.basename(sondeo.imgSondeo));             return {
+                ...sondeo.toObject(),
+                imgSondeo: imagePath 
+            };
+        });
+
+        return res.status(200).json(sondeosConImagen);
         
     } catch (error) {
-        console.log("Hubo un error al momento de traer los sondeos")
+        console.log("Hubo un error al momento de traer los sondeos", error);
+        return res.status(500).json({ error: 'Error al obtener los sondeos' });
     }
-}
+};
 export const obtenerSondeo= async(req, res)=>{
     const {id}= req.params
     try{
