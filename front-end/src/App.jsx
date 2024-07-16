@@ -2,20 +2,15 @@
 import {BrowserRouter,Routes, Route} from 'react-router-dom'
 import './App.css'
 import {Login} from './components/login.jsx'
-import {Administrador} from './components/administrador.jsx'
-import {Ciudadano } from './components/ciudadano.jsx'
 import { Protected } from './components/protectedRoutes.jsx'
-//import {BrowserRouter, useRoutes } from 'react-router-dom'
-//import { SondeosDisponibles } from './pages/SondeosDisponibles'
-//import { PreguntasSondeo } from './components/PreguntasSondeo'
+import { SondeosDisponibles } from './pages/SondeosDisponibles.jsx'
+import { CertificadoCiudadano } from './components/CertificadoCiudadano.jsx'
+import { PreguntasSondeo } from './components/PreguntasSondeo.jsx'
+import { SondeoAdmin } from './pages/SondeoAdmin.jsx'
+import { CrearInforme } from './components/CrearInforme.jsx'
+import { CrearSondeo } from './components/CrearSondeo.jsx'
+
 function App() {
-  // const AppRouter = ()=>{
-  //   const routes = useRoutes([
-  //     {path:'/', element:<PreguntasSondeo/>}
-  //   ])
-  
-  //   return routes
-  // }
   return (
     <>
  <BrowserRouter>
@@ -23,8 +18,12 @@ function App() {
 <Route  path='/' element={<Login/>}/>
 <Route  element={<Protected/>}>
 
-<Route path='/administrador' element={<Administrador/>}/>
-<Route path='/ciudadano' element={<Ciudadano/>}/>
+<Route path='/administrador' element={<SondeoAdmin/>}/>
+<Route path='/ciudadano' element={<SondeosDisponibles/>}/>
+<Route path='/certificadosdisponibles' element={<CertificadoCiudadano/>} />
+<Route path='/preguntassondeo' element={<PreguntasSondeo/>}/>
+<Route path='/crearinforme' element={<CrearInforme/>}/>
+<Route path='/crearsondeo' element={<CrearSondeo/>} />  
 </Route>
  </Routes>
  
