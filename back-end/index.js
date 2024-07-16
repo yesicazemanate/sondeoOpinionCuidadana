@@ -2,6 +2,7 @@ import express from "express"
 import cors from 'cors'
 import connectionBd from './config/db.js'
 import routes from './routes/index.js'
+
 const PORT= 4003
 const app = express();
 app.use(express.json())

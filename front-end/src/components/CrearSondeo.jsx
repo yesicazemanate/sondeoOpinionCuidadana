@@ -1,6 +1,18 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 
 export const CrearSondeo = () => {
+    const [imagen, setImagen]=useState(null)
+    const handleSumit=async(e)=>{
+        e.preventDefault();
+        const imageData= new FormData()
+        imageData.append('image', imagen)
+        const response = await axios.post('http://localhost:4003/login',{
+            imgSondeo: imageData
+        })
+        
+
+    }
   return (
 <div class="bg-gray-100 flex items-center justify-center h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg">
@@ -9,7 +21,7 @@ export const CrearSondeo = () => {
         </div>
         <h2 class="text-2xl font-semibold text-center mb-4">Crea un nuevo sondeo</h2>
         <p class="text-gray-600 text-center mb-6">Registra el nuevo sondeo</p>
-        <form className='flex gap-5'>
+        <form className='flex gap-5' onSubmit={handleSumit}>
             <div className=''> 
             <div class="mb-4">
                 <label for="fullName" class="block text-gray-700 text-sm font-semibold mb-2">Titulo</label>
@@ -35,7 +47,8 @@ export const CrearSondeo = () => {
             </div>
             <div class="mb-4">
                 <label for="fullName" class="block text-gray-700 text-sm font-semibold mb-2">Icono del sondeo</label>
-                <input type="file" required/>
+                <input type="file"  value={imagen}
+                      onChange={(e) => setImagen(e.target.value)}required/>
             </div>
             </div>
         </form>
