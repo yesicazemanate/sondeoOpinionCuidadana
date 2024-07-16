@@ -1,18 +1,39 @@
 import Sondeo from '../models/sondeo.js'
+import upload from '../libs/multer.js';
+export const agregarSondeo = (req, res) => {
+    upload.single('imgSondeo')(req, res, async (err) => {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        } if (!req.file) {
+            return res.status(400).json({ error: 'No se subió ningún archivo' });
+        }
+        console.log(req.file)
 
-export const agregarSondeo=async(req, res)=>{
-    try {
-        const body = req.body
+        const { titulo, descripcion, fechaPublicacion, fechaCierre, estado, idAdministrador, idCiudadano } = req.body;
 
-        const sondeo = await Sondeo.create(body)
-        return res.status(201).json({
-            msg:"sondeo agregado correctamente",
-            sondeo: sondeo
-        })
-    } catch (error) {
-        console.log("ERROR", error )
-    }
-}
+        const newSonde = {
+            titulo,
+            descripcion,
+            fechaPublicacion,
+            fechaCierre,
+            estado,
+            imgSondeo: req.file.path, 
+            idAdministrador,
+            idCiudadano
+        };
+
+        try {
+            const sondeo = await Sondeo.create(newSonde);
+            return res.status(201).json({
+                msg: "sondeo agregado correctamente",
+                sondeo: sondeo
+            });
+        } catch (error) {
+            console.log("ERROR", error);
+            return res.status(500).json({ error: 'Error al crear el sondeo' });
+        }
+    });
+};
 export const obtenerSondeos=async(req, res)=>{
     try {
         const sondeos =  await Sondeo.find({})
