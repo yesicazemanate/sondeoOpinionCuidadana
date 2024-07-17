@@ -18,9 +18,9 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 routes.use('/rol', routeRol)
 routes.use('/usuario', routeUsuario)
 routes.use('/login', routeLogin)
-router.use('/pregunta', routePregunta)
-router.use('/respuestausuario', routeRespuesta)
-router.use('/participante', routeParticipante)
-router.use('/certificados', routeCertificado)
+routes.use('/pregunta', routePregunta)
+routes.use('/respuestausuario', routeRespuesta)
+routes.use('/participante', routeParticipante)
+routes.use('/obtenerCertificados',express.static(path.join(__dirname,'certificados')), routeCertificado)
 routes.use('/sondeos',express.static(path.join(__dirname,'imagenes')), routeSondeo)
  export default routes

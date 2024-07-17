@@ -1,6 +1,6 @@
 import Sondeo from '../models/sondeo.js'
-import upload from '../libs/multer.js';
-import path from 'path'
+import upload from '../libs/multerImagenes.js';
+
 export const agregarSondeo = (req, res) => {
     upload.single('imgSondeo')(req, res, async (err) => {
         if (err) {

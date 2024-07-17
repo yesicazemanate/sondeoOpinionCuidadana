@@ -1,43 +1,34 @@
-import multer from 'multer'
-import path from 'path'
-import url from 'url'
-import fs from 'fs'
+
 import Certificado from "../models/certificado.js"; 
 import { generateUniqueId } from "../utils/uniqueIndenticador.js";
+import uploadCer from '../libs/multerCertificados.js';
 
-const __filename = url.fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const storage = multer.diskStorage({
-    destination: path.join(__dirname, '..', 'certificados'),
-    filename: (req, file, cd)=>{
-        cd(null, file.originalname);
-    }
-});
+export const addCerticado =  (req, res)=>{
 
-    const upload = multer({storage});
-
-export const addCerticado = async (req, res)=>{
-    try {
-        const idUnico = generateUniqueId()
-        upload.single('file')(req, res, async (err)=>{
-            if(err){
-                return res.status(400).json({
-                    msg: err.message
-                })
-            }
-
-        const file = req.file;
-        const originalname= file.originalname
+    const idUnico = generateUniqueId()
+    uploadCer.single('archivoParticipacion')(req, res, async (err)=>{
+        if (err) {
+            console.error('Error al cargar el archivo:', err.message); 
+            return res.status(400).json({ error: err.message });
+        
+        } if (!req.file) {
+            return res.status(400).json({ error: 'No se subió ningún archivo' });
+        }
+        console.log(req.file)
+        
+      
         const newManual = new Certificado({
             idParticipacion: req.body.idParticipacion,
             fecha_emision: req.body.fecha_emision,
             identificador:  idUnico,
-            archivoParticipacion: originalname
+            archivoParticipacion:req.file.filename
         });
-        try {
-            await newManual.save()
+        
+            try {
+            const certificado = await Certificado.create(newManual)
             return res.status(200).json({
-                msg: 'Certificado guardado correctamente'
+                msg: 'Certificado guardado correctamente',
+                certificado: certificado
             });
         } catch (error) {
             console.error(error)
@@ -46,13 +37,9 @@ export const addCerticado = async (req, res)=>{
             })
         }
 
-        })
-    } catch (error) {
-        console.error(error)
-        return res.status(500).json({
-            msg:"Internal server error"
-        })
-    }
+        
+   
+})
 }
 
 
@@ -71,7 +58,7 @@ export const getCerticados = async (req, res)=>{
 }
 
 
-const pdfStoragePath = path.join(__dirname, '..', 'certificado');
+
 
 export const actualizarCertificado = async (req, res) => {
   const id  = req.params.id;

@@ -5,14 +5,15 @@ import axios from 'axios';
 
  export const DescargarCertificado = () => {
   const handleSavePDF = async (blob) => {
+    console.log(blob.type)
     const formData = new FormData();
-    formData.append('pdf', blob, 'certificado1.pdf');
     formData.append('idParticipacion', '12345');
     formData.append('fecha_emision', '2024-07-16');
     formData.append('identificador', 'unique12345');
+    formData.append('archivoParticipacion', new Blob([blob], { type: 'application/pdf' }), 'certificado1.pdf');
 
     try {
-      const response = await axios.post('http://localhost:4003/certificados', formData, {
+      const response = await axios.post('http://localhost:4003/obtenerCertificados', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
