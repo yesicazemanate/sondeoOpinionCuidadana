@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 export const CrearSondeo = () => {
@@ -9,7 +10,7 @@ export const CrearSondeo = () => {
     const [fechaCierre, setFechaCierre] = useState();
     const [perfilPoblacional, setPerfilPoblacional] = useState();
     const [imagen, setImagen] = useState();
-
+    const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault();
         const imageData = new FormData();
@@ -39,6 +40,11 @@ export const CrearSondeo = () => {
         setFechaCierre('');
         setPerfilPoblacional('');
         setImagen(null);
+
+        setTimeout(()=>{
+            navigate('/opcionespregunta')
+        },700)
+
     };
 
     return (

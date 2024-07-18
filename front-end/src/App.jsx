@@ -10,6 +10,7 @@ import { SondeoAdmin } from './pages/SondeoAdmin.jsx'
 import { CrearInforme } from './components/CrearInforme.jsx'
 import { CrearSondeo } from './components/CrearSondeo.jsx'
 import {RegistroUsuario} from './pages/registro.jsx'
+import { OpcionPregunta } from './components/OpcionPregunta.jsx'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
 <Route path='/preguntassondeo' element={<PreguntasSondeo/>}/>
 <Route path='/crearinforme' element={<CrearInforme/>}/>
 <Route path='/crearsondeo' element={<CrearSondeo/>} />  
+<Route path='/opcionespregunta' element={<OpcionPregunta/>}/>
 </Route>
  </Routes>
  
